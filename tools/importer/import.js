@@ -11,6 +11,57 @@
  */
 /* eslint-disable no-console, class-methods-use-this */
 
+const createLFFBlock = (main, document) => {
+  const section = main.querySelector('.gray-area.section');
+  if (section) {
+    const data = [['Low Fare Finder']];
+    const content = section.querySelector('.container-copy');
+    if (content) {
+      data.push([content]);
+    }
+
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    section.replaceWith(table);
+  }
+}
+
+const createFlightslock = (main, document) => {
+  const container = main.querySelector('.tab-accordion-container');
+  if (container) {
+    const data = [['Fligts']];
+    const accordions = container.querySelectorAll('.tab-accordion');
+    if (accordions) {
+      accordions.forEach((a) => {
+        data.push([a]);
+      });
+    }
+
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    container.replaceWith(table);
+  }
+}
+
+const createAirportDetailsBlock = (main, document) => {
+  const section = main.querySelector('.airInfo');
+  if (section) {
+    const data = [['Airport Details']];
+    const text = section.innerHTML.trim().replace('Airport Details: ', '');
+    data.push([text]);
+
+    const table = WebImporter.DOMUtils.createTable(data, document);
+    section.replaceWith(table);
+  }
+}
+
+const makeAbsoluteLinks = (main) => {
+  main.querySelectorAll('a').forEach((a) => {
+    if (a.href.startsWith('/')) {
+      const u = new URL(a.href, 'https://main--westjet--hlxsites.hlx3.page/');
+      a.href = u.toString();
+    }
+  });
+}
+
 export default {
   /**
    * Apply DOM operations to the provided document and return
@@ -25,17 +76,18 @@ export default {
       remove.forEach((element) => { element.remove(); });
     }
 
-    // const main = document.getElementById('main-content');
-    // return main;
+    const main = document.getElementById('main-content');
 
-    document.querySelectorAll('section, div').forEach((section) => {
-      const img = WebImporter.DOMUtils.getImgFromBackground(section, document);
-      if (img) {
-        section.before(img);
-      }
-    });
+    createLFFBlock(main, document);
+    createFlightslock(main, document);
+    createAirportDetailsBlock(main, document);
+    makeAbsoluteLinks(main);
 
-    return document.body;
+    WebImporter.DOMUtils.remove(main, [
+      '.tab-nav'
+    ]);
+
+    return main;
 
   },
 
@@ -45,7 +97,7 @@ export default {
    * @param {String} url The url of the document being transformed.
    * @param {HTMLDocument} document The document
    */
-  generateDocumentPath: (url, document) => {
+  generateDocumentPath: (url) => {
     return new URL(url).pathname.replace(/\/$/, '');
   },
 }
