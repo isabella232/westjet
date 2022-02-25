@@ -62,6 +62,30 @@ const makeAbsoluteLinks = (main) => {
   });
 }
 
+function createMetadata(main, document) {
+  const meta = {};
+
+  const title = document.querySelector('title');
+  if (title) {
+    meta.Title = title.innerHTML.replace(/[\n\t]/gm, '');
+  }
+
+  const desc = document.querySelector('[name="description"]');
+  if (desc) {
+    meta.Description = desc.content;
+  }
+  
+  const author = document.querySelector('[name="author"]');
+  if (author) {
+    meta.Author = author.content;
+  }
+
+  const block = WebImporter.Blocks.getMetadataBlock(document, meta);
+  main.append(block);
+
+  return meta;
+}
+
 export default {
   /**
    * Apply DOM operations to the provided document and return
@@ -81,6 +105,7 @@ export default {
     createLFFBlock(main, document);
     createFlightslock(main, document);
     createAirportDetailsBlock(main, document);
+    createMetadata(main, document);
     makeAbsoluteLinks(main);
 
     WebImporter.DOMUtils.remove(main, [
