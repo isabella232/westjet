@@ -1,0 +1,44 @@
+.fligts > div > div {
+    display: none;
+    border: 1px solid #ccc;
+    padding: 8px 32px;
+}
+
+.fligts > div.selected > div {
+    display: block;
+}
+
+.fligts > div.fligts-switcher {
+    display: flex;
+    align-items: flex-end;
+}
+
+.fligts > div.fligts-switcher > span {
+    border: 1px solid #ccc;
+    background-color: #eee;
+    margin-top: 2px;
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    height: 36px;
+    padding: 2px;
+    font-size: var(--body-font-size-s);
+}
+
+.fligts > div.fligts-switcher > span.selected {
+    background-color: var(--background-color);
+    border-top-width: 3px;
+    border-top-color: var(--link-color);
+    height: 38px;
+}
+
+@media (min-width: 600px) {
+    .fligts ul {
+        font-size: 16px;
+        list-style: none;
+        padding: 0;
+        columns: 200px 3;
+    }    
+}
+
