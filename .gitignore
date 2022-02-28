@@ -2,5 +2,5 @@
 .hlx/*
 coverage/*
 logs/*
-node_modules/*
-tools/importer/crawler/node_modules/*
+node_modules
+.import
