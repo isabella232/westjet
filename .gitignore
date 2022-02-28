@@ -1,4 +1,6 @@
+.DS_store
 .hlx/*
 coverage/*
 logs/*
 node_modules/*
+tools/importer/crawler/node_modules/*
