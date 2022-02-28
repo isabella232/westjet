@@ -1,0 +1,24 @@
+.low-fare-finder {
+    background-color: var(--overlay-background-color);
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+}
+
+.low-fare-finder::before {
+    content: ' ';
+    background-image: url('./lff.svg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    display: block;
+    width: 80px;
+    height: 80px;
+    margin-right: 32px;
+}
+
+@media (min-width: 900px) {
+    .low-fare-finder {
+        flex-direction: unset;
+        align-items: center;
+    }
+}
