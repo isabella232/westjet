@@ -28,7 +28,7 @@ const createLFFBlock = (main, document) => {
 const createFlightslock = (main, document) => {
   const container = main.querySelector('.tab-accordion-container');
   if (container) {
-    const data = [['Fligts']];
+    const data = [['Flights']];
     const accordions = container.querySelectorAll('.tab-accordion');
     if (accordions) {
       accordions.forEach((a) => {
