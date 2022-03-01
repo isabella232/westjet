@@ -5,7 +5,7 @@ function setClass(els, className) {
 export default async function decorate(block) {
     const tabs = [...block.children];
     const div = document.createElement('div');
-    div.className = 'fights-switcher';
+    div.className = 'flights-switcher';
     div.innerHTML=`
     <span>Flights From</span>
     <span>Destination</span>

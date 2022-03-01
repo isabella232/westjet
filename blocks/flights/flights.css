@@ -1,19 +1,19 @@
-.fights > div > div {
+.flights > div > div {
     display: none;
     border: 1px solid #ccc;
     padding: 8px 32px;
 }
 
-.fights > div.selected > div {
+.flights > div.selected > div {
     display: block;
 }
 
-.fights > div.fights-switcher {
+.flights > div.flights-switcher {
     display: flex;
     align-items: flex-end;
 }
 
-.fights > div.fights-switcher > span {
+.flights > div.flights-switcher > span {
     border: 1px solid #ccc;
     background-color: #eee;
     margin-top: 2px;
@@ -26,7 +26,7 @@
     font-size: var(--body-font-size-s);
 }
 
-.fights > div.fights-switcher > span.selected {
+.flights > div.flights-switcher > span.selected {
     background-color: var(--background-color);
     border-top-width: 3px;
     border-top-color: var(--link-color);
@@ -34,7 +34,7 @@
 }
 
 @media (min-width: 600px) {
-    .fights ul {
+    .flights ul {
         font-size: 16px;
         list-style: none;
         padding: 0;
