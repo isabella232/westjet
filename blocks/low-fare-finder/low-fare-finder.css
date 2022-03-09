@@ -1,5 +1,5 @@
 .low-fare-finder {
-    background-color: red;
+    background-color: var(--overlay-background-color);
     padding: 32px;
     display: flex;
     flex-direction: column;
