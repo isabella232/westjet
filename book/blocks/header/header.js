@@ -23,7 +23,9 @@ export default async function decorate(block) {
   // fetch nav content
   const navPath = cfg.nav || '/nav';
   const resp = await fetch(`${navPath}.plain.html`);
-  const html = await resp.text();
+  let html = await resp.text();
+
+  html = html.replaceAll('/icons/', '/book/icons/');
 
   // decorate nav DOM
   const nav = document.createElement('div');
