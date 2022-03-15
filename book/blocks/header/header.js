@@ -6,25 +6,6 @@ function setLinksToWj(element) {
   });
 }
 
-async function replaceNavContent(nav) {
-  const resp = await fetch(`https://www.westjet.com/en-ca/integration/header`);
-  const html = await resp.text();
-  const div = document.createElement('div');
-  div.innerHTML = html;
-  setLinksToWj(div);
-  nav.querySelectorAll('div').forEach((section, i) => i && section.remove());
-  const h2s = div.querySelectorAll('.navbar-nav a.primary');
-  h2s.forEach(a => {
-    const text = a.textContent;
-    const link = a.href;
-    const ul = a.closest('li').querySelector('ul');
-    const item = document.createElement('div');
-    item.innerHTML = `<h2><a href="${link}">${text}</a></h2>`;
-    if (ul) item.append(ul);
-    nav.append(item);
-  })
-}
-
 /**
  * collapses all open nav sections
  * @param {Element} sections The container element
@@ -58,7 +39,6 @@ export default async function decorate(block) {
   const navSections = document.createElement('div');
   navSections.classList.add('nav-sections');
   nav.innerHTML = html;
-  await replaceNavContent(nav);
   nav.querySelectorAll(':scope > div').forEach((navSection, i) => {
     if (!i) {
       // first section is the brand section
